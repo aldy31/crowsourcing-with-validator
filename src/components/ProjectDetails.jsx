@@ -71,6 +71,21 @@ const ProjectDetails = ({ project }) => {
               </div>
             </div>
 
+            <img
+            src={project?.TtdURL}
+            alt={project?.title}
+            className="rounded-xl h-44 object-cover sm:w-1/3"
+          />
+
+              <a
+                    href={project?.Syarat}
+                    target="_blank"
+                    rel="noopener noreferrer"
+
+                  >
+                    Lihat Syarat
+                  </a>
+
             <div>
               <p className="text-sm font-light mt-2">{project?.description}</p>
               <div className="w-full overflow-hidden bg-gray-300 mt-4">

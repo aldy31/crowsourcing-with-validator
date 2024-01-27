@@ -11,10 +11,14 @@
   "dependencies": {
     "@cometchat-pro/chat": "^3.0.10",
     "@nomiclabs/hardhat-ethers": "^2.1.0",
+    "@nomiclabs/hardhat-truffle5": "^2.0.7",
     "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "@nomiclabs/hardhat-web3": "^2.0.0",
+    "axios": "^1.6.2",
     "ethereum-waffle": "^3.4.4",
     "ethers": "^5.6.9",
     "hardhat": "^2.10.1",
+    "hardhat-truffle5": "^1.0.1",
     "ipfs-http-client": "^57.0.3",
     "moment": "^2.29.4",
     "react": "^17.0.2",
@@ -26,6 +30,7 @@
     "react-router-dom": "6",
     "react-scripts": "5.0.0",
     "react-toastify": "^9.1.1",
+    "switch": "^0.0.0",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {

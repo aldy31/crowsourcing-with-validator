@@ -11,6 +11,8 @@ const CreateProject = () => {
   const [cost, setCost] = useState('')
   const [date, setDate] = useState('')
   const [imageURL, setImageURL] = useState('')
+  const [TtdURL, setTtdURL] = useState('')
+  const [Syarat, setSyarat] = useState('')
 
   const toTimestamp = (dateStr) => {
     const dateObj = Date.parse(dateStr)
@@ -19,7 +21,7 @@ const CreateProject = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!title || !description || !cost || !date || !imageURL) return
+    if (!title || !description || !cost || !date || !imageURL || !TtdURL || !Syarat ) return
 
     const params = {
       title,
@@ -27,10 +29,12 @@ const CreateProject = () => {
       cost,
       expiresAt: toTimestamp(date),
       imageURL,
+      TtdURL,
+      Syarat,
     }
 
     await createProject(params)
-    toast.success('Project created successfully, will reflect in 30sec.')
+    toast.success('Project Berhasil Dibuat')
     onClose()
   }
 
@@ -45,6 +49,8 @@ const CreateProject = () => {
     setDescription('')
     setImageURL('')
     setDate('')
+    setTtdURL('')
+    setSyarat('')
   }
 
   return (
@@ -69,18 +75,6 @@ const CreateProject = () => {
             </button>
           </div>
 
-          <div className="flex justify-center items-center mt-5">
-            <div className="rounded-xl overflow-hidden h-20 w-20">
-              <img
-                src={
-                  imageURL ||
-                  'https://media.wired.com/photos/5926e64caf95806129f50fde/master/pass/AnkiHP.jpg'
-                }
-                alt="project title"
-                className="h-full w-full object-cover cursor-pointer"
-              />
-            </div>
-          </div>
 
           <div
             className="flex justify-between items-center
@@ -156,6 +150,41 @@ const CreateProject = () => {
             className="flex justify-between items-center
           bg-gray-300 rounded-xl mt-5"
           >
+            <input
+              className="block w-full bg-transparent
+            border-0 text-sm text-slate-500 focus:outline-none
+            focus:ring-0"
+              type="url"
+              name="TtdURL"
+              placeholder=" TTD Image URL"
+              onChange={(e) => setTtdURL(e.target.value)}
+              value={TtdURL}
+              required
+            />
+          </div>
+
+          <div
+            className="flex justify-between items-center
+          bg-gray-300 rounded-xl mt-5"
+          >
+            <input
+              className="block w-full bg-transparent
+            border-0 text-sm text-slate-500 focus:outline-none
+            focus:ring-0"
+              type="url"
+              name="Syarat"
+              placeholder=" Syarat URL"
+              onChange={(e) => setSyarat(e.target.value)}
+              value={Syarat}
+              required
+            />
+          </div>
+
+
+          <div
+            className="flex justify-between items-center
+          bg-gray-300 rounded-xl mt-5"
+          >
             <textarea
               className="block w-full bg-transparent
             border-0 text-sm text-slate-500 focus:outline-none
@@ -171,9 +200,9 @@ const CreateProject = () => {
 
           <button
             type="submit"
-            className="inline-block px-6 py-2.5 bg-green-600
+            className="inline-block px-6 py-2.5 bg-blue-600
             text-white font-medium text-md leading-tight
-            rounded-full shadow-md hover:bg-green-700 mt-5"
+            rounded-full shadow-md hover:bg-blue-700 mt-5"
           >
             Submit Project
           </button>
