@@ -18,28 +18,28 @@ const ProjectBackers = ({ backers }) => {
                 className="text-sm font-medium
                 px-6 py-4 text-left"
               >
-                Backer
+                Pendonasi
               </th>
               <th
                 scope="col"
                 className="text-sm font-medium
                 px-6 py-4 text-left"
               >
-                Donations
+                Sumbangan
               </th>
               <th
                 scope="col"
                 className="text-sm font-medium
                 px-6 py-4 text-left"
               >
-                Refunded
+                Dikembalikan
               </th>
               <th
                 scope="col"
                 className="text-sm font-medium
                 px-6 py-4 text-left"
               >
-                Time
+                Waktu
               </th>
             </tr>
           </thead>
@@ -84,7 +84,7 @@ const Backer = ({ backer }) => (
       className="text-sm font-light
       px-6 py-4 whitespace-nowrap"
     >
-      {backer.refunded ? 'Yes' : 'No'}
+      {backer.refunded ? 'Ya' : 'Tidak'}
     </td>
     <td
       className="text-sm font-light

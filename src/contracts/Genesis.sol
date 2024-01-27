@@ -1,4 +1,4 @@
-//SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.7;
 
 contract Genesis {
@@ -46,7 +46,6 @@ contract Genesis {
         uint expiresAt;
         uint backers;
         statusEnum status;
-        string TtdURL;
         string Syarat;
     }
 
@@ -73,7 +72,6 @@ contract Genesis {
         string memory imageURL,
         uint cost,
         uint expiresAt,
-        string memory TtdURL,
         string memory Syarat
 
     ) public returns (bool) {
@@ -81,7 +79,6 @@ contract Genesis {
         require(bytes(description).length > 0, "Description cannot be empty");
         require(bytes(imageURL).length > 0, "ImageURL cannot be empty");
         require(cost > 0 ether, "Cost cannot be zero");
-        require(bytes(TtdURL).length > 0, "Ttd URL cannot be empty");
         require(bytes(Syarat).length > 0, "Syarat URL cannot be empty");
 
         projectStruct memory project;
@@ -93,7 +90,6 @@ contract Genesis {
         project.cost = cost;
         project.timestamp = block.timestamp;
         project.expiresAt = expiresAt;
-        project.TtdURL = TtdURL;
         project.Syarat = Syarat;
 
 
@@ -117,21 +113,18 @@ contract Genesis {
         string memory description,
         string memory imageURL,
         uint expiresAt,
-        string memory TtdURL,
         string memory Syarat
     ) public returns (bool) {
         require(msg.sender == projects[id].owner, "Unauthorized Entity");
         require(bytes(title).length > 0, "Title cannot be empty");
         require(bytes(description).length > 0, "Description cannot be empty");
         require(bytes(imageURL).length > 0, "ImageURL cannot be empty");
-        require(bytes(TtdURL).length > 0, "TTD URL cannot be empty");
         require(bytes(Syarat).length > 0, "Syarat cannot be empty");
 
         projects[id].title = title;
         projects[id].description = description;
         projects[id].imageURL = imageURL;
         projects[id].expiresAt = expiresAt;
-        projects[id].TtdURL = TtdURL;
         projects[id].Syarat = Syarat;
 
 

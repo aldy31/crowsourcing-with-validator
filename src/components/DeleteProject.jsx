@@ -10,7 +10,7 @@ const DeleteProject = ({ project }) => {
 
   const handleSubmit = async () => {
     await deleteProject(project?.id)
-    toast.success('Project deleted successfully, will reflect in 30sec.')
+    toast.success('Proyek berhasil dihapus, akan terlihat dalam 30 detik.')
     setGlobalState('deleteModal', 'scale-0')
     navigate.push('/')
   }
@@ -51,8 +51,8 @@ const DeleteProject = ({ project }) => {
           </div>
 
           <div className="flex flex-col justify-center items-center rounded-xl mt-5">
-            <p>Are you sure?</p>
-            <small className="text-red-400">This is irreversible!</small>
+            <p>Apakah anda Yakin?</p>
+            <small className="text-red-400">Ini tidak bisa dibatalkan!</small>
           </div>
 
           <button
@@ -61,7 +61,7 @@ const DeleteProject = ({ project }) => {
             rounded-full shadow-md hover:bg-red-700 mt-5"
             onClick={handleSubmit}
           >
-            Delete Project
+            Hapus Project
           </button>
         </div>
       </div>

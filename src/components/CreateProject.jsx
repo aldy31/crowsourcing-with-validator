@@ -11,7 +11,6 @@ const CreateProject = () => {
   const [cost, setCost] = useState('')
   const [date, setDate] = useState('')
   const [imageURL, setImageURL] = useState('')
-  const [TtdURL, setTtdURL] = useState('')
   const [Syarat, setSyarat] = useState('')
 
   const toTimestamp = (dateStr) => {
@@ -21,7 +20,7 @@ const CreateProject = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!title || !description || !cost || !date || !imageURL || !TtdURL || !Syarat ) return
+    if (!title || !description || !cost || !date || !imageURL || !Syarat ) return
 
     const params = {
       title,
@@ -29,7 +28,6 @@ const CreateProject = () => {
       cost,
       expiresAt: toTimestamp(date),
       imageURL,
-      TtdURL,
       Syarat,
     }
 
@@ -49,7 +47,6 @@ const CreateProject = () => {
     setDescription('')
     setImageURL('')
     setDate('')
-    setTtdURL('')
     setSyarat('')
   }
 
@@ -65,7 +62,7 @@ const CreateProject = () => {
       >
         <form onSubmit={handleSubmit} className="flex flex-col">
           <div className="flex justify-between items-center">
-            <p className="font-semibold">Add Project</p>
+            <p className="font-semibold">Buat Project</p>
             <button
               onClick={onClose}
               type="button"
@@ -146,22 +143,7 @@ const CreateProject = () => {
             />
           </div>
 
-          <div
-            className="flex justify-between items-center
-          bg-gray-300 rounded-xl mt-5"
-          >
-            <input
-              className="block w-full bg-transparent
-            border-0 text-sm text-slate-500 focus:outline-none
-            focus:ring-0"
-              type="url"
-              name="TtdURL"
-              placeholder=" TTD Image URL"
-              onChange={(e) => setTtdURL(e.target.value)}
-              value={TtdURL}
-              required
-            />
-          </div>
+  
 
           <div
             className="flex justify-between items-center

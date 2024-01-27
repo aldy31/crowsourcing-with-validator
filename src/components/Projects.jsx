@@ -27,12 +27,12 @@ const Projects = ({ projects }) => {
         <div className="flex justify-center items-center my-5">
           <button
             type="button"
-            className="inline-block px-6 py-2.5 bg-green-600
+            className="inline-block px-6 py-2.5 bg-blue-600
           text-white font-medium text-xs leading-tight uppercase
-          rounded-full shadow-md hover:bg-green-700"
+          rounded-full shadow-md hover:bg-blue-700"
             onClick={() => setEnd(end + count)}
           >
-            Load more
+            Muat Lebih 
           </button>
         </div>
       ) : null}
@@ -68,7 +68,7 @@ const ProjectCard = ({ project }) => {
             </div>
 
             <small className="text-gray-500">
-              {expired ? 'Expired' : daysRemaining(project.expiresAt) + ' left'}
+              {expired ? 'deadlines' : daysRemaining(project.expiresAt) + ' tersisa'}
             </small>
           </div>
 
@@ -85,7 +85,7 @@ const ProjectCard = ({ project }) => {
             className="flex justify-between items-center 
         font-bold mt-1 mb-2 text-gray-700"
           >
-            <small>{project.raised} ETH Raised</small>
+            <small>{project.raised} ETH Terkumpul</small>
             <small className="flex justify-start items-center">
               <FaEthereum />
               <span>{project.cost} ETH</span>
@@ -97,7 +97,7 @@ const ProjectCard = ({ project }) => {
             mt-4 mb-2 text-gray-500 font-bold"
           >
             <small>
-              {project.backers} Backer{project.backers == 1 ? '' : 's'}
+              {project.backers} Pendonasi{project.backers == 1 ? '' : ''}
             </small>
             <div>
               {expired ? (

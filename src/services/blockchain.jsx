@@ -64,7 +64,6 @@ const createProject = async ({
   imageURL,
   cost,
   expiresAt,
-  TtdURL,
   Syarat,
 }) => {
   try {
@@ -72,7 +71,7 @@ const createProject = async ({
 
     const contract = await getEtheriumContract()
     cost = ethers.utils.parseEther(cost)
-    tx = await contract.createProject(title, description, imageURL, cost, expiresAt, TtdURL, Syarat)
+    tx = await contract.createProject(title, description, imageURL, cost, expiresAt, Syarat)
     await tx.wait()
     await loadProjects()
   } catch (error) {
@@ -86,14 +85,13 @@ const updateProject = async ({
   description,
   imageURL,
   expiresAt,
-  TtdURL,
   Syarat,
 }) => {
   try {
     if (!ethereum) return alert('Please install Metamask')
 
     const contract = await getEtheriumContract()
-    tx = await contract.updateProject(id, title, description, imageURL, expiresAt, TtdURL, Syarat)
+    tx = await contract.updateProject(id, title, description, imageURL, expiresAt, Syarat)
     await tx.wait()
     await loadProject(id)
   } catch (error) {
@@ -212,7 +210,6 @@ const structuredProjects = (projects) =>
       cost: parseInt(project.cost._hex) / 10 ** 18,
       backers: project.backers.toNumber(),
       status: project.status,
-      TtdURL: project.TtdURL,
       Syarat: project.Syarat
     }))
     .reverse()

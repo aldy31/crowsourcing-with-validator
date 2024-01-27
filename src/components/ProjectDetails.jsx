@@ -33,7 +33,7 @@ const ProjectDetails = ({ project }) => {
               <small className="text-gray-500">
                 {expired
                   ? 'Expired'
-                  : daysRemaining(project.expiresAt) + ' left'}
+                  : daysRemaining(project.expiresAt) + ' tersisa'}
               </small>
             </div>
 
@@ -50,7 +50,7 @@ const ProjectDetails = ({ project }) => {
                   </small>
                 ) : null}
                 <small className="text-gray-500 font-bold">
-                  {project?.backers} Backer{project?.backers == 1 ? '' : 's'}
+                  {project?.backers} Pendonasi{project?.backers == 1 ? '' : ''}
                 </small>
               </div>
 
@@ -72,9 +72,8 @@ const ProjectDetails = ({ project }) => {
             </div>
 
             <img
-            src={project?.TtdURL}
             alt={project?.title}
-            className="rounded-xl h-44 object-cover sm:w-1/3"
+            className="rounded-xl h-44 object-cover"
           />
 
               <a
@@ -100,7 +99,7 @@ const ProjectDetails = ({ project }) => {
               </div>
 
               <div className="flex justify-between items-center font-bold mt-2">
-                <small>{project?.raised} ETH Raised</small>
+                <small>{project?.raised} ETH Terkumpul</small>
                 <small className="flex justify-start items-center">
                   <FaEthereum />
                   <span>{project?.cost} ETH</span>
@@ -116,7 +115,7 @@ const ProjectDetails = ({ project }) => {
               rounded-full shadow-md hover:bg-green-700"
                     onClick={() => setGlobalState('backModal', 'scale-100')}
                   >
-                    Back Project
+                    Donasi Project
                   </button>
                 ) : null}
 
@@ -154,7 +153,7 @@ const ProjectDetails = ({ project }) => {
                             setGlobalState('deleteModal', 'scale-100')
                           }
                         >
-                          Delete
+                          Hapus
                         </button>
                       </>
                     ) : (
@@ -164,7 +163,7 @@ const ProjectDetails = ({ project }) => {
                         text-white font-medium text-xs leading-tight uppercase
                         rounded-full shadow-md hover:bg-gray-700"
                       >
-                        Project Closed
+                        Project Di Tutup
                       </button>
                     )
                   ) : null

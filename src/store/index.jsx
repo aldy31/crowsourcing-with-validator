@@ -31,7 +31,7 @@ const daysRemaining = (days) => {
   days = moment(days).format('YYYY-MM-DD')
   days = moment(days)
   days = days.diff(todaysdate, 'days')
-  return days == 1 ? '1 day' : days + ' days'
+  return days == 1 ? '1 day' : days + ' Hari'
 }
 
 export {

@@ -33,7 +33,7 @@ const UpdateProject = ({ project }) => {
     }
 
     await updateProject(params)
-    toast.success('Project updated successffully, will reflect in 30sec.')
+    toast.success('Projek berhasil di update')
     onClose()
   }
 
@@ -53,7 +53,7 @@ const UpdateProject = ({ project }) => {
       >
         <form onSubmit={handleSubmit} className="flex flex-col">
           <div className="flex justify-between items-center">
-            <p className="font-semibold">Edit Project</p>
+            <p className="font-semibold">Update Project</p>
             <button
               onClick={onClose}
               type="button"

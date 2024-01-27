@@ -11,7 +11,7 @@ const Hero = () => {
           h-20 border shadow-md w-full"
         >
           <span
-            className="text-lg font-bold text-green-900
+            className="text-lg font-bold text-black-900
             leading-5"
           >
             {stats?.totalProjects || 0}
@@ -23,24 +23,24 @@ const Hero = () => {
           h-20 border shadow-md w-full"
         >
           <span
-            className="text-lg font-bold text-green-900
+            className="text-lg font-bold text-black-900
             leading-5"
           >
             {stats?.totalBacking || 0}
           </span>
-          <span>Backings</span>
+          <span>Dukungan/Donasi</span>
         </div>
         <div
           className="flex flex-col justify-center items-center
           h-20 border shadow-md w-full"
         >
           <span
-            className="text-lg font-bold text-green-900
+            className="text-lg font-bold text-black-900
             leading-5"
           >
             {stats?.totalDonations || 0} ETH
           </span>
-          <span>Donated</span>
+          <span>Disumbangkan</span>
         </div>
       </div>
     </div>
