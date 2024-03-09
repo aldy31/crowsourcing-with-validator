@@ -55,19 +55,22 @@ const ProjectDetails = ({ project }) => {
               </div>
 
               <div className="font-bold">
-                {expired ? (
-                  <small className="text-red-500">Expired</small>
-                ) : project?.status == 0 ? (
-                  <small className="text-gray-500">Open</small>
-                ) : project?.status == 1 ? (
-                  <small className="text-green-500">Accepted</small>
-                ) : project?.status == 2 ? (
-                  <small className="text-gray-500">Reverted</small>
-                ) : project?.status == 3 ? (
-                  <small className="text-red-500">Deleted</small>
-                ) : (
-                  <small className="text-orange-500">Paid</small>
-                )}
+              {expired ? (
+                <small className="text-red-500">Expired</small>
+              ) : project?.status == 0 ? (
+                <small className="text-gray-500">Pending</small>
+              ) : project?.status == 1 ? (
+                <small className="text-green-500">Open</small>
+              ) : project?.status == 2 ? (
+                <small className="text-gray-500">Accepted</small>
+              ) : project?.status == 3 ? (
+                <small className="text-red-500">Reverted</small>
+              ) : project?.status == 4 ? (
+                <small className="text-orange-500">Deleted</small>
+              ) : (
+                <small className="text-orange-500">Paid</small>
+              )
+              } 
               </div>
             </div>
 

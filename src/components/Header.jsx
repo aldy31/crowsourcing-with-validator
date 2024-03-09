@@ -33,7 +33,7 @@ const Header = () => {
           target="_blank"
           className="flex items-center space-x-1 text-xl text-black"
         >
-          <span>Generate IPFS Hash</span>
+          <span>Buat Link</span>
         </Link>
       {/* <Link 
         to="/"

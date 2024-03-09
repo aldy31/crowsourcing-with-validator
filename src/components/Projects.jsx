@@ -1,44 +1,95 @@
-import Identicons from 'react-identicons'
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+// import Identicons from 'react-identicons'
+// import { useState, useEffect } from 'react'
+// import { Link } from 'react-router-dom'
+// import { truncate, daysRemaining } from '../store'
+// import { isValidator, isValidatorAccount } from '../services/blockchain'
+// import { FaEthereum } from 'react-icons/fa'
+
+// const Projects = ({ projects }) => {
+//   const [end, setEnd] = useState(4)
+//   const [count] = useState(4)
+//   const [collection, setCollection] = useState([])
+
+//   const getCollection = () => projects.slice(0, end)
+
+//   useEffect(() => {
+//     setCollection(getCollection())
+//   }, [projects, end])
+
+//   return (
+//     <div className="flex flex-col px-6 mb-7">
+//       <div className="flex justify-center items-center flex-wrap">
+//         {collection.map((project, i) => (
+//           <ProjectCard key={i} project={project} />
+//         ))}
+//       </div>
+
+//       {projects.length > collection.length ? (
+//         <div className="flex justify-center items-center my-5">
+//           <button
+//             type="button"
+//             className="inline-block px-6 py-2.5 bg-blue-600
+//           text-white font-medium text-xs leading-tight uppercase
+//           rounded-full shadow-md hover:bg-blue-700"
+//             onClick={() => setEnd(end + count)}
+//           >
+//             Muat Lebih 
+//           </button>
+//         </div>
+//       ) : null}
+//     </div>
+//   )
+// }
+
+import Identicons from 'react-identicons';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { truncate, daysRemaining } from '../store'
-import { FaEthereum } from 'react-icons/fa'
+import { isValidator } from '../services/blockchain';
+import { FaEthereum } from 'react-icons/fa';
 
 const Projects = ({ projects }) => {
-  const [end, setEnd] = useState(4)
-  const [count] = useState(4)
-  const [collection, setCollection] = useState([])
+  const [end, setEnd] = useState(4);
+  const [count] = useState(4);
+  const [collection, setCollection] = useState([]);
 
-  const getCollection = () => projects.slice(0, end)
+  const getCollection = () => projects.slice(0, end);
 
   useEffect(() => {
-    setCollection(getCollection())
-  }, [projects, end])
+    setCollection(getCollection());
+  }, [projects, end]);
+
+  // Filter hanya proyek dengan status PENDING jika akun terhubung adalah validator
+  const filteredProjects = isValidator()
+    ? projects
+    : projects.filter((project) => project.status !== 0);
 
   return (
     <div className="flex flex-col px-6 mb-7">
       <div className="flex justify-center items-center flex-wrap">
-        {collection.map((project, i) => (
-          <ProjectCard key={i} project={project} />
-        ))}
+        {getCollection()
+          .filter((project) => isValidator() || project.status !== 0)
+          .map((project, i) => (
+            <ProjectCard key={i} project={project} />
+          ))}
       </div>
 
-      {projects.length > collection.length ? (
+      {filteredProjects.length > collection.length ? (
         <div className="flex justify-center items-center my-5">
           <button
             type="button"
             className="inline-block px-6 py-2.5 bg-blue-600
-          text-white font-medium text-xs leading-tight uppercase
-          rounded-full shadow-md hover:bg-blue-700"
+            text-white font-medium text-xs leading-tight uppercase
+            rounded-full shadow-md hover:bg-blue-700"
             onClick={() => setEnd(end + count)}
           >
-            Muat Lebih 
+            Muat Lebih
           </button>
         </div>
       ) : null}
     </div>
-  )
-}
+  );
+};
 
 const ProjectCard = ({ project }) => {
   const expired = new Date().getTime() > Number(project?.expiresAt + '000')
@@ -100,19 +151,22 @@ const ProjectCard = ({ project }) => {
               {project.backers} Pendonasi{project.backers == 1 ? '' : ''}
             </small>
             <div>
-              {expired ? (
+            {expired ? (
                 <small className="text-red-500">Expired</small>
               ) : project?.status == 0 ? (
-                <small className="text-gray-500">Open</small>
+                <small className="text-gray-500">Pending</small>
               ) : project?.status == 1 ? (
-                <small className="text-green-500">Accepted</small>
+                <small className="text-green-500">Open</small>
               ) : project?.status == 2 ? (
-                <small className="text-gray-500">Reverted</small>
+                <small className="text-gray-500">Accepted</small>
               ) : project?.status == 3 ? (
-                <small className="text-red-500">Deleted</small>
+                <small className="text-red-500">Reverted</small>
+              ) : project?.status == 4 ? (
+                <small className="text-orange-500">Deleted</small>
               ) : (
                 <small className="text-orange-500">Paid</small>
-              )}
+              )
+              } 
             </div>
           </div>
         </div>

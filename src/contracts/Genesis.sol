@@ -1,8 +1,9 @@
 
-pragma solidity ^0.8.7;
+pragma solidity >=0.4.22 <0.9.0;
 
 contract Genesis {
     address public owner;
+    address public validator;
     uint public projectTax;
     uint public projectCount;
     uint public balance;
@@ -14,6 +15,7 @@ contract Genesis {
     mapping(uint => bool) public projectExist;
 
     enum statusEnum {
+        PENDING, 
         OPEN,
         APPROVED,
         REVERTED,
@@ -54,6 +56,11 @@ contract Genesis {
         _;
     }
 
+    modifier validatorOnly() {
+        require(msg.sender == validator, "Hanya validator yang dapat mengakses fungsi ini");
+        _;
+    }
+
     event Action (
         uint256 id,
         string actionType,
@@ -63,7 +70,13 @@ contract Genesis {
 
     constructor(uint _projectTax) {
         owner = msg.sender;
+        validator = msg.sender;
         projectTax = _projectTax;
+    }
+
+
+    function changeValidator(address _newValidator) public ownerOnly {
+        validator = _newValidator;
     }
 
     function createProject(
@@ -91,6 +104,7 @@ contract Genesis {
         project.timestamp = block.timestamp;
         project.expiresAt = expiresAt;
         project.Syarat = Syarat;
+        project.status = statusEnum.PENDING;
 
 
         projects.push(project);
@@ -276,4 +290,8 @@ contract Genesis {
         (bool success, ) = payable(to).call{value: amount}("");
         require(success);
     }
+
+
+
+
 }

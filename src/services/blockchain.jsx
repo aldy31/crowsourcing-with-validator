@@ -44,19 +44,8 @@ const isWallectConnected = async () => {
   }
 }
 
-const getEtheriumContract = async () => {
-  const connectedAccount = getGlobalState('connectedAccount')
 
-  if (connectedAccount) {
-    const provider = new ethers.providers.Web3Provider(ethereum)
-    const signer = provider.getSigner()
-    const contract = new ethers.Contract(contractAddress, contractAbi, signer)
 
-    return contract
-  } else {
-    return getGlobalState('contract')
-  }
-}
 
 const createProject = async ({
   title,
@@ -185,6 +174,8 @@ const payoutProject = async (id) => {
   }
 }
 
+
+
 const structuredBackers = (backers) =>
   backers
     .map((backer) => ({
@@ -244,5 +235,5 @@ export {
   loadProject,
   backProject,
   getBackers,
-  payoutProject,
+  payoutProject
 }
